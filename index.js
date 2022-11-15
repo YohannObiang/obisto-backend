@@ -13,16 +13,23 @@ app.listen(process.env.PORT || 3001)
 app.use(express.json())
 app.use(cors())
 
-const con = mysql.createConnection({
-    host: 'db4free.net',
-    user: 'yohannobiang',
-    password: '@Bolo1997',
-    database: 'obisto'
-})
+const con = mysql.createPool({
+    connectionLimit : 100,
+    waitForConnections : true,
+    queueLimit :0,
+    host     : 'db4free.net',
+    user     : 'yohannobiang',
+    password : '@Bolo1997',
+    database : 'obisto',
+    debug    :  true,
+    wait_timeout : 28800,
+    connect_timeout :10
+});
 
 
 
-con.connect((err)=>{
+
+con.getConnection((err)=>{
     if(err)
     {
         console.log(err)
