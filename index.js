@@ -14,9 +14,9 @@ app.use(express.json())
 app.use(cors())
 
 const con = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
+    host: 'db4free.net',
+    user: 'yohannobiang',
+    password: '@Bolo1997',
     database: 'obisto'
 })
 
