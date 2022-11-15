@@ -67,6 +67,15 @@ app.get('/categories/objets/:id', (req, res)=>{
         res.status(200).json(result)
     })
 })
+// Lister les commandes d'un proprietaire
+app.get('/commandes/proprietaire/:id', (req, res)=>{
+    
+    con.query('SELECT * FROM commandes WHERE id_proprietaire=?',[req.params.id],(err,result)=>{
+        if(err) res.status(500).send(err)
+        
+        res.status(200).json(result)
+    })
+})
 // Lister les objets d'un proprietaire
 app.get('/proprietaires/objets/:id', (req, res)=>{
     
@@ -80,6 +89,15 @@ app.get('/proprietaires/objets/:id', (req, res)=>{
 app.get('/categories/:id', (req, res)=>{
     
     con.query('SELECT * FROM objets WHERE id_categorie=?',[req.params.id],(err,result)=>{
+        if(err) res.status(500).send(err)
+        
+        res.status(200).json(result)
+    })
+})
+// Lister les objets d'un objet
+app.get('/objet/:id', (req, res)=>{
+    
+    con.query('SELECT * FROM objets WHERE id_objet=?',[req.params.id],(err,result)=>{
         if(err) res.status(500).send(err)
         
         res.status(200).json(result)
