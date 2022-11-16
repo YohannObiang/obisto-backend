@@ -188,20 +188,23 @@ app.post('/ajout/categorie', (req, res)=>{
 app.post('/ajout/objet', (req, res)=>{
 
     const objet = req.body.objet;
-    const description = req.body.description;
-    const id_categorie = req.body.id_categorie;
+    const caution = req.body.caution;
+    const etat = req.body.etat;
+    const prix_jour = req.body.prix_jour;
+    const prix_semaine = req.body.prix_semaine;
+    const categorie = req.body.categorie;
     const id_proprietaire  = req.body.id_proprietaire ;
     const statut  = req.body.statut ;
     const date_dajout = req.body.date_dajout;
     const image1 = req.body.image1;
     const image2 = req.body.image2;
-    const image3 = req.body.image3;
+    const image3 = req.body.image3; 
     const image4 = req.body.image4;
     const image5 = req.body.image5;
 
     
     
-    con.query('INSERT INTO matieres VALUES(NULL,?,?,?,?,?,?,?,?,?,?)',[objet, description, id_proprietaire, statut, date_dajout, image1, image2, image3, image4, image4],(err,result)=>{
+    con.query('INSERT INTO matieres VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',[objet, caution, etat, prix_jour, prix_semaine, categorie, id_proprietaire, statut, date_dajout, image1, image2, image3, image4, image4, image5],(err,result)=>{
         if(err)
     {
         console.log(err)
