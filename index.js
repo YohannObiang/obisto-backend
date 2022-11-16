@@ -13,13 +13,27 @@ app.listen(process.env.PORT || 3001)
 app.use(express.json())
 app.use(cors())
 
+// const con = mysql.createPool({
+//     connectionLimit : 100,
+//     waitForConnections : true,
+//     queueLimit :0,
+//     host     : 'db4free.net',
+//     user     : 'yohannobiang',
+//     password : '@Bolo1997',
+//     database : 'obisto',
+//     debug    :  true,
+//     wait_timeout : 28800,
+//     connect_timeout :10
+// });
+
+
 const con = mysql.createPool({
     connectionLimit : 100,
     waitForConnections : true,
     queueLimit :0,
-    host     : 'db4free.net',
-    user     : 'yohannobiang',
-    password : '@Bolo1997',
+    host     : 'localhost',
+    user     : 'root',
+    password : '',
     database : 'obisto',
     debug    :  true,
     wait_timeout : 28800,
@@ -29,7 +43,9 @@ const con = mysql.createPool({
 
 
 
-con.getConnection((err)=>{
+
+
+con.getConnection ((err)=>{
     if(err)
     {
         console.log(err)
@@ -204,7 +220,7 @@ app.post('/ajout/objet', (req, res)=>{
 
     
     
-    con.query('INSERT INTO matieres VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',[objet, caution, etat, prix_jour, prix_semaine, categorie, id_proprietaire, statut, date_dajout, image1, image2, image3, image4, image4, image5],(err,result)=>{
+    con.query('INSERT INTO objets VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',[objet, caution, etat, prix_jour, prix_semaine, categorie, id_proprietaire, statut, date_dajout, image1, image2, image3, image4, image4, image5],(err,result)=>{
         if(err)
     {
         console.log(err)
