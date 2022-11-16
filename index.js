@@ -13,32 +13,32 @@ app.listen(process.env.PORT || 3001)
 app.use(express.json())
 app.use(cors())
 
-// const con = mysql.createPool({
-//     connectionLimit : 100,
-//     waitForConnections : true,
-//     queueLimit :0,
-//     host     : 'db4free.net',
-//     user     : 'yohannobiang',
-//     password : '@Bolo1997',
-//     database : 'obisto',
-//     debug    :  true,
-//     wait_timeout : 28800,
-//     connect_timeout :10
-// });
-
-
 const con = mysql.createPool({
     connectionLimit : 100,
     waitForConnections : true,
     queueLimit :0,
-    host     : 'localhost',
-    user     : 'root',
-    password : '',
+    host     : 'db4free.net',
+    user     : 'yohannobiang',
+    password : '@Bolo1997',
     database : 'obisto',
     debug    :  true,
     wait_timeout : 28800,
     connect_timeout :10
 });
+
+
+// const con = mysql.createPool({
+//     connectionLimit : 100,
+//     waitForConnections : true,
+//     queueLimit :0,
+//     host     : 'localhost',
+//     user     : 'root',
+//     password : '',
+//     database : 'obisto',
+//     debug    :  true,
+//     wait_timeout : 28800,
+//     connect_timeout :10
+// });
 
 
 
