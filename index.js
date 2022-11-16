@@ -1,7 +1,25 @@
 const express = require('express')
 const cors = require('cors')
 const app = express()
+const multer = require("multer");
+const path = require("path");
 var mysql = require("mysql")
+
+const storage = multer.diskStorage({
+    destination: './upload/images',
+    filename: (req, file, cb) => {
+        return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
+    }
+})
+
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 10
+    }
+})
+
+
 
 app.all('/', (req, res) => {
     console.log("Just got a request!")
@@ -12,6 +30,7 @@ app.listen(process.env.PORT || 3001)
 
 app.use(express.json())
 app.use(cors())
+app.use(errHandler);
 
 const con = mysql.createPool({
     connectionLimit : 100,
@@ -25,6 +44,20 @@ const con = mysql.createPool({
     wait_timeout : 28800,
     connect_timeout :10
 });
+
+
+// const con = mysql.createPool({
+//     connectionLimit : 100,
+//     waitForConnections : true,
+//     queueLimit :0,
+//     host     : 'localhost',
+//     user     : 'root',
+//     password : '',
+//     database : 'obisto',
+//     debug    :  true,
+//     wait_timeout : 28800,
+//     connect_timeout :10
+// });
 
 
 
@@ -215,3 +248,21 @@ app.post('/ajout/objet', (req, res)=>{
     }
     })
 })
+
+app.use('/profile', express.static('upload/images'));
+app.post("/upload", upload.single('profile'), (req, res) => {
+
+    res.json({
+        success: 1,
+        // profile_url: `http://localhost:3001/profile/${req.file.filename}`
+    })
+})
+
+function errHandler(err, req, res, next) {
+    if (err instanceof multer.MulterError) {
+        res.json({
+            success: 0,
+            message: err.message
+        })
+    }
+}
