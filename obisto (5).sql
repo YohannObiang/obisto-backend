@@ -183,8 +183,8 @@ ALTER TABLE `proprietaires`
 --
 -- AUTO_INCREMENT pour la table `categories`
 --
-ALTER TABLE `categories`
-  MODIFY `id_Categorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+ALTER TABLE `commandes`
+  MODIFY `id_commande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT pour la table `objets`
