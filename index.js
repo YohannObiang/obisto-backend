@@ -38,33 +38,33 @@ app.use(express.json())
 app.use(cors())
 app.use(errHandler);
 
-const con = mysql.createPool({
-    connectionLimit : 100,
-    waitForConnections : true,
-    queueLimit :0,
-    host     : 'db4free.net',
-    user     : 'yohannobiang',
-    password : '@Bolo1997',
-    database : 'obisto',
-    debug    :  true,
-    wait_timeout : 28800,
-    connect_timeout :10
-});
-app.use('/uploads', express.static('uploads'));
-
-
 // const con = mysql.createPool({
 //     connectionLimit : 100,
 //     waitForConnections : true,
 //     queueLimit :0,
-//     host     : 'localhost',
-//     user     : 'root',
-//     password : '',
+//     host     : 'db4free.net',
+//     user     : 'yohannobiang',
+//     password : '@Bolo1997',
 //     database : 'obisto',
 //     debug    :  true,
 //     wait_timeout : 28800,
 //     connect_timeout :10
 // });
+app.use('/uploads', express.static('uploads'));
+
+
+const con = mysql.createPool({
+    connectionLimit : 100,
+    waitForConnections : true,
+    queueLimit :0,
+    host     : 'localhost',
+    user     : 'root',
+    password : '',
+    database : 'obisto',
+    debug    :  true,
+    wait_timeout : 28800,
+    connect_timeout :10
+});
 
 
 
@@ -313,7 +313,7 @@ app.put('/update/objet/:id', (req, res)=>{
 
     
     
-    con.query(`UPDATE objets SET objet = PS4 fat, caution = 30000, etat = Excellent, prix_jour = 5500, description = Tres bonne machine, categorie = Jeu vidéo WHERE objets.id_objet = 185`,[objet, caution, etat, prix_jour, description, categorie],(err,result)=>{
+    con.query(`UPDATE objets SET objet = ?, caution = ?, etat = ?, prix_jour = ?, description = ? WHERE objets.id_objet = ${req.params.id}`,[objet, caution, etat, prix_jour, description, categorie],(err,result)=>{
         if(err)
     {
         console.log(err)
