@@ -38,33 +38,33 @@ app.use(express.json())
 app.use(cors())
 app.use(errHandler);
 
-// const con = mysql.createPool({
-//     connectionLimit : 100,
-//     waitForConnections : true,
-//     queueLimit :0,
-//     host     : 'db4free.net',
-//     user     : 'yohannobiang',
-//     password : '@Bolo1997',
-//     database : 'obisto',
-//     debug    :  true,
-//     wait_timeout : 28800,
-//     connect_timeout :10
-// });
-app.use('/uploads', express.static('uploads'));
-
-
 const con = mysql.createPool({
     connectionLimit : 100,
     waitForConnections : true,
     queueLimit :0,
-    host     : 'localhost',
-    user     : 'root',
-    password : '',
+    host     : 'db4free.net',
+    user     : 'yohannobiang',
+    password : '@Bolo1997',
     database : 'obisto',
     debug    :  true,
     wait_timeout : 28800,
     connect_timeout :10
 });
+app.use('/uploads', express.static('uploads'));
+
+
+// const con = mysql.createPool({
+//     connectionLimit : 100,
+//     waitForConnections : true,
+//     queueLimit :0,
+//     host     : 'localhost',
+//     user     : 'root',
+//     password : '',
+//     database : 'obisto',
+//     debug    :  true,
+//     wait_timeout : 28800,
+//     connect_timeout :10
+// });
 
 
 
